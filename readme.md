@@ -1,1 +1,1 @@
-A wrapper around dpkg, apt-*, and aptitude
+A wrapper around dpkg, apt-file, and aptitude
