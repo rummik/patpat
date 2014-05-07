@@ -17,10 +17,8 @@ function pat {
 	if functions + "pat-$cmd" > /dev/null; then
 		"pat-$cmd" $@
 		return $?
-	elif [[ $# -gt 0 ]]; then
-		-pat-su aptitude $cmd $@
 	else
-		print 'Nothing to do.'
+		-pat-su aptitude $cmd $@
 	fi
 }
 
