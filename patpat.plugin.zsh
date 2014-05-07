@@ -18,7 +18,7 @@ function pat {
 		"pat-$cmd" $@
 		return $?
 	elif [[ $# -gt 0 ]]; then
-		-pat-su $@
+		-pat-su aptitude $@
 	else
 		print 'Nothing to do.'
 	fi
@@ -28,7 +28,7 @@ function pat-install {
 	if [[ -f $1 ]]; then
 		-pat-su dpkg -i $1
 	else
-		-pat-su aptitude $@
+		-pat-su aptitude install $@
 	fi
 }
 
@@ -38,7 +38,7 @@ function pat-update {
 }
 
 function pat-find {
-	pat file find $@
+	pat-file find $@
 }
 
 function pat-file {
