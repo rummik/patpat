@@ -35,6 +35,10 @@ function pat-update {
 	-pat-su apt-file update
 }
 
+function pat-reconfigure {
+	-pat-su dpkg-reconfigure $@
+}
+
 function pat-find {
 	pat-file find $@
 }
