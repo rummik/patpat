@@ -22,6 +22,10 @@ function pat {
 	fi
 }
 
+function pat-search {
+	aptitude search $@
+}
+
 function pat-install {
 	if [[ -f $1 ]]; then
 		-pat-su dpkg -i $1
@@ -46,7 +50,7 @@ function pat-reconfigure {
 }
 
 function pat-find {
-	pat-file find $@
+	apt-file find $@
 }
 
 function pat-file {
