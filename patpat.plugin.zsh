@@ -25,9 +25,15 @@ function pat {
 function pat-install {
 	if [[ -f $1 ]]; then
 		-pat-su dpkg -i $1
+		-pat-su apt-get -f install
 	else
 		-pat-su aptitude install $@
 	fi
+}
+
+function pat-up {
+	pat-update
+	pat-upgrade
 }
 
 function pat-update {
