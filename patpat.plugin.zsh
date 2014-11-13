@@ -37,7 +37,7 @@ function pat-install {
 
 function pat-up {
 	pat-update
-	pat-upgrade
+	-pat-su aptitude upgrade
 }
 
 function pat-update {
