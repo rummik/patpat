@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function -pat-su {
+function _pat-su {
 	if [[ $USER != 'root' ]]; then
 		sudo -- $@
 	else
@@ -9,50 +9,56 @@ function -pat-su {
 }
 
 function pat {
+	local cmd
+
 	if [[ $# -gt 0 ]]; then
 		cmd=$1
 		shift
 	fi
 
-	if functions + "pat-$cmd" > /dev/null; then
-		"pat-$cmd" $@
+	if whence -- -pat-$cmd > /dev/null; then
+		$(whence -- -pat-$cmd) $@
 		return $?
 	else
-		-pat-su aptitude $cmd $@
+		_pat-su aptitude $cmd $@
+		return $?
 	fi
 }
 
-function pat-search {
+alias -- -pat-search
+function -pat-search {
 	aptitude search $@
 }
 
-function pat-install {
+alias -- -pat-i=-pat-install
+function -pat-install {
 	if [[ -f $1 ]]; then
-		-pat-su dpkg -i $1
-		-pat-su apt-get -f install
+		_pat-su dpkg -i $1
+		_pat-su apt-get -f install
 	else
-		-pat-su aptitude install $@
+		_pat-su aptitude install $@
 	fi
 }
 
-function pat-up {
-	pat-update
-	-pat-su aptitude upgrade
+function -pat-up {
+	-pat-update
+	_pat-su aptitude upgrade
 }
 
-function pat-update {
-	-pat-su aptitude update
-	-pat-su apt-file update
+alias -- -pat-u=-pat-update
+function -pat-update {
+	_pat-su aptitude update
+	_pat-su apt-file update
 }
 
-function pat-reconfigure {
-	-pat-su dpkg-reconfigure $@
+function -pat-reconfigure {
+	_pat-su dpkg-reconfigure $@
 }
 
-function pat-find {
+function -pat-find {
 	apt-file find $@
 }
 
-function pat-file {
-	-pat-su apt-file $@
+function -pat-file {
+	_pat-su apt-file $@
 }
