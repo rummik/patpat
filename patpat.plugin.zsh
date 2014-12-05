@@ -55,6 +55,16 @@ function -pat-reconfigure {
 	_pat-su dpkg-reconfigure $@
 }
 
+alias -- -pat-add=-pat-add-repository
+function -pat-add-repository {
+	_pat-su add-apt-repository $1
+	-pat-update
+}
+
+function -pat-ppa {
+	-pat-add-repository ppa:$1
+}
+
 function -pat-find {
 	apt-file find $@
 }
