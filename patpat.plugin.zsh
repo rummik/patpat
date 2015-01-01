@@ -25,10 +25,7 @@ function pat {
 	fi
 }
 
-alias -- -pat-search
-function -pat-search {
-	aptitude search $@
-}
+alias -- -pat-search='aptitude search'
 
 alias -- -pat-i=-pat-install
 function -pat-install {
