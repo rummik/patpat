@@ -26,6 +26,7 @@ function pat {
 }
 
 alias -- -pat-search='aptitude search'
+alias -- -pat-show='aptitude show'
 
 alias -- -pat-i=-pat-install
 function -pat-install {
