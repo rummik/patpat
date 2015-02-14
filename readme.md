@@ -1,1 +1,3 @@
-A wrapper around dpkg, apt-file, and aptitude
+ Patpat
+========
+A wrapper around dpkg, apt-file, and aptitude.
