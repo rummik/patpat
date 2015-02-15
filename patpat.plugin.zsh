@@ -16,6 +16,11 @@ function pat {
 		shift
 	fi
 
+	if [[ $cmd == 'moo' ]]; then
+		print "I'm an elephant."
+		return
+	fi
+
 	if whence -- -pat-$cmd > /dev/null; then
 		$(whence -- -pat-$cmd) $@
 		return $?
@@ -46,6 +51,8 @@ function -pat-help {
 	  show <package>			Display detailed information about a package [aptitude]
 
 	If a command does not match the list above, it is passed directly to aptitude.
+
+	This patpat does not yet have supercow powers.
 	EOF
 }
 
