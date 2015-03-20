@@ -17,7 +17,10 @@ function pat {
 	fi
 
 	if [[ $cmd == 'moo' ]]; then
-		print "I'm an elephant."
+		case x$1 in
+			x) print "I'm an elephant.";;
+			*) print "I'm not an elephant?";;
+		esac
 		return
 	fi
 
