@@ -52,6 +52,7 @@ function -pat-help {
 	  search <pattern...>			Search for a package by name and/or pattern [aptitude]
 	  find <pattern...>			Search files in packages by pattern [apt-file]
 	  show <package>			Display detailed information about a package [aptitude]
+	  autoremove				Automatically remove all unused packages [apt-get]
 
 	If a command does not match the list above, it is passed directly to aptitude.
 
@@ -107,4 +108,8 @@ function -pat-find {
 
 function -pat-file {
 	_pat-su apt-file $@
+}
+
+function -pat-autoremove {
+	_pat-su apt-get autoremove $@
 }
