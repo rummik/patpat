@@ -1,5 +1,30 @@
 #!/bin/zsh
 
+function _pat-check-init {
+	local req ask missing=()
+
+	for req in {apt-file,aptitude}; do
+		if ! whence -- $req > /dev/null; then
+			missing+=($req)
+		fi
+	done
+
+	if [[ $#missing -gt 0 ]]; then
+		print Patpat depends on: ${(j:, :)missing}
+		print -n Install the missing dependencies"? [Y/n] "
+
+		read ask
+
+		if [[ $ask == Y || $ask == y || -z $ask ]]; then
+			_pat-su apt-get install $missing
+		else
+			return 1
+		fi
+	fi
+
+	return 0
+}
+
 function _pat-su {
 	if [[ $USER != 'root' ]]; then
 		sudo -- $@
@@ -22,6 +47,10 @@ function pat {
 			*) print "I'm not an elephant?";;
 		esac
 		return
+	fi
+
+	if [[ $cmd != 'help' ]]; then
+		_pat-check-init
 	fi
 
 	if whence -- -pat-$cmd > /dev/null; then
